@@ -1,0 +1,25 @@
+{
+  "name": "flv-data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "flv-data": "index.js"
+  },
+  "description": "node flv metadata",
+  "keywords": [
+    "node",
+    "flv",
+    "amf0",
+    "flv-data",
+    "node-flv",
+    "metadata",
+    "flv-scriptdata",
+    "flv-metadata"
+  ],
+  "dependencies": {
+    "minimist": "^1.2.6",
+    "ora": "5.4.1"
+  },
+  "author": "zhuguibiao",
+  "license": "MIT"
+}
