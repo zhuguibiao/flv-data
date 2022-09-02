@@ -2,11 +2,9 @@
 
 # dependencies
 /node_modules
-/demo
 
 npm-debug.log
-test.flv
-input.flv
+*.flv
 
 # Editor directories and files
 .idea
