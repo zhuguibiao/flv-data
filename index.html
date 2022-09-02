@@ -116,7 +116,7 @@
       <div id="streamURL">
         <div class="url-input">
           <label for="sURL">Stream URL:</label>
-          <input id="sURL" type="text" value="http://localhost:9999/assets/out.flv" />
+          <input id="sURL" type="text" value="https://zhuguibiao.github.io/flv-data/assets/test.flv" />
           <button onclick="switch_mds()">Switch to MediaDataSource</button>
         </div>
         <div class="options">
@@ -133,7 +133,7 @@
       <div id="mediaSourceURL" class="hidden">
         <div class="url-input">
           <label for="msURL">MediaDataSource JsonURL:</label>
-          <input id="msURL" type="text" value="http://127.0.0.1/flv/7182741.json" />
+          <input id="msURL" type="text" value="https://zhuguibiao.github.io/flv-data/assets/test.flv" />
           <button onclick="switch_url()">Switch to URL</button>
         </div>
       </div>
@@ -154,13 +154,14 @@
       <button onclick="flv_seekto()">SeekTo</button>
     </div>
     <textarea name="logcatbox" class="logcatBox" rows="10" readonly></textarea>
+    <div class="script_data"></div>
   </div>
 
-  <script src="../dist/flv.js"></script>
+  <script src="./dist/flv.js"></script>
 
   <script>
 
-    var url = './assets/input.flc'
+    var url = 'https://zhuguibiao.github.io/flv-data/assets/test.flv'
     var checkBoxFields = ['isLive', 'withCredentials', 'hasAudio', 'hasVideo'];
     var streamURL, mediaSourceURL;
 
@@ -212,6 +213,14 @@
 
     function getScriptData(element) {
       console.log(element)
+      const scriptData = element.scriptData || {}
+      let str = 'customData：</Br>'
+      if (scriptData && scriptData.customData) {
+        Object.keys(scriptData.customData).map((item) => {
+          str += `${item}：${scriptData.customData[item]}</Br>`
+        })
+      }
+      document.querySelector('.script_data').innerHTML = str
     }
 
     function flv_start() {
