@@ -1,18 +1,16 @@
 {
-  "OnTextData": {
-    "width": 33333,
-    "boolean": true,
-    "string": "12345",
-    "float": 41.11,
-    "array": [
-      {
-        "a": 1
-      },
-      2,
-      3
-    ],
-    "obj": {
+  "width": 33333,
+  "boolean": true,
+  "string": "12345",
+  "float": 41.11,
+  "array": [
+    {
       "a": 1
-    }
+    },
+    2,
+    3
+  ],
+  "obj": {
+    "a": 1
   }
 }

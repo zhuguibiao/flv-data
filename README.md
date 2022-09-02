@@ -5,7 +5,7 @@ add custom script tag data or metadata at any time of the FLV file
 English | [简体中文](./README.zh-CN.md)
 
 ##  demo
-writing...
+[flv-data online demo](https://zhuguibiao.github.io/flv-data)
 
 ## Usage Instructions
 npm
@@ -16,7 +16,7 @@ npm install flv-data -g
 
 flv-data run demo
 ``` bash
-flv-data -i input.flv -data test.json --t=500 -o test.flv
+flv-data -i input.flv -data test.json --t=1000 -o test.flv
 ```  
 
 ## API
@@ -31,7 +31,5 @@ flv-data -i input.flv -data test.json --t=500 -o test.flv
 
 ## other
 [flv.js online test](http://bilibili.github.io/flv.js/demo/)
-
-
 
 [FLV video_file_format_spec for AMF](https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf)

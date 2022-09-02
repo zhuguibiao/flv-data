@@ -12,9 +12,9 @@ const options = parseArgs(process.argv.slice(2), {
     t: 0,
     o: './test.flv'
   },
+  string: ['i', 'o']
 });
 const { inputUrl, outputUrl, jsonData, timestamp } = handleOptions(options)
-
 try {
   spinner.start('read file');
   const inputFile = fs.readFileSync(inputUrl);
@@ -82,17 +82,17 @@ function parseChunks(chunk) {
  * @param {*} timestampExtrended 
  * @return {Buffer}
  *  tag header 
-  * tagType            1byte
-  * datasize           3byte 
-  * timeStamp          3byte
-  * timestampExtrended 1byte   
-  * streamId           3byte
-  * tag Header 11 bit lengrh
+  * tagType UI8            1byte
+  * datasize UI24          3byte 
+  * timeStamp UI24         3byte
+  * timestampExtrended UI8 1byte   
+  * streamId UI24          3byte
+  * tag Header 11 byte length
   * tag-bodysize === datasize
  */
 function addScriptTagData(dataJson, timeStamp = 0, streamId = 0, timestampExtrended = 0) {
   // tag body
-  const tagBodyBuffer = Utils.encodeflvTagData(dataJson)
+  const tagBodyBuffer = Utils.encodeflvTagData(dataJson, timeStamp)
   let tagHeaderBuffer = Buffer.alloc(11)
   // tag
   tagHeaderBuffer.writeInt8(18, 0)
@@ -155,7 +155,7 @@ function handleOptions(options) {
     throw new Error('no input file')
   }
   options.inputUrl = options.i;
-  options.outputUrl = options.o;
+  options.outputUrl = options.o || './test.flv';
   if (options.data.indexOf('.json') > -1) {
     options.jsonData = require(options.data)
   } else {

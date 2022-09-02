@@ -4,8 +4,7 @@
 
 [English](./README.md) | 简体中文
 ## 🎁 例子
-撰写中...
-
+[flv-data 在线demo](https://zhuguibiao.github.io/flv-data)
 ## 🚀  使用者指南
 通过npm下载安装代码
 
@@ -15,7 +14,7 @@ npm install flv-data -g
 
 使用flv-data运行指定文件、需要插入的数据、插入视频到的时间戳和输出目录
 ``` bash
-flv-data -i input.flv -data test.json --t=500 -o test.flv
+flv-data -i input.flv -data test.json --t=1000 -o test.flv
 ```  
 
 ## 📑  文档

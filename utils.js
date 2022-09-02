@@ -475,21 +475,22 @@ function amf0Encode(a) {
   });
   return buf;
 }
-
 /**
- * {
- *    tagName: {
- *      a:1,
- *      b:{c:1}
- *    }
- * }
- * @param o 
+ *  scriptdata: {
+ *     timestamp:1,
+ *     customData:{c:1}
+ *  }
+ * tagName = script data
+ * @param customData 
  * @returns {Buffer}
  */
-function encodeflvTagData(o) {
-  var targetName = Object.keys(o)[0]
-  var targetNameBuf = amf0encString(targetName)
-  var bodyBuf = amf0Encode([o[targetName]])
+function encodeflvTagData(customData, timestamp = 0) {
+  const scriptData = {
+    timestamp,
+    customData,
+  }
+  var targetNameBuf = amf0encString('scriptData')
+  var bodyBuf = amf0Encode([scriptData])
   var targetEndBuf = Buffer.alloc(3)
   targetEndBuf[2] = 9
   return Buffer.concat([targetNameBuf, bodyBuf, targetEndBuf])
