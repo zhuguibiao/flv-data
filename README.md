@@ -4,6 +4,9 @@ add custom script tag data or metadata at any time of the FLV file
 
 English | [简体中文](./README.zh-CN.md)
 
+## Why Do It？
+There is an **FLV live stream** in my project, and the result of algorithm analysis needs to be displayed **in real time**. Therefore, I will add custom **script tag** data to each frame of the FLV file, and then display it.
+
 ##  demo
 [flv-data online demo](https://zhuguibiao.github.io/flv-data)
 

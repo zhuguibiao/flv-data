@@ -3,8 +3,11 @@
 在FLV文件的任何时间添加自定义脚本标记数据或元数据
 
 [English](./README.md) | 简体中文
+## 为什么做这个
+项目中有一个**FLV直播流**，需要**实时显示算法分析结果画面**，所以，我要在FLV文件的每一帧添加自定义的script tag data，然后去展示他。
 ## 🎁 例子
 [flv-data 在线demo](https://zhuguibiao.github.io/flv-data)
+
 ## 🚀  使用者指南
 通过npm下载安装代码
 
