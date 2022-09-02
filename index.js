@@ -7,10 +7,10 @@ const spinner = ora('Loading...');
 
 const options = parseArgs(process.argv.slice(2), {
   default: {
-    i: './input.flv',
+    i: '',
     data: './test.json',
     t: 0,
-    o: './test.flv'
+    o: './output.flv'
   },
   string: ['i', 'o']
 });
