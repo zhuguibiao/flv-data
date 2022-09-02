@@ -1,4 +1,4 @@
-# [flv data](https://github.com/zhuguibiao/flv-data)
+# flv data&middot; [![npm version](https://img.shields.io/npm/v/flv-data)](https://www.npmjs.com/package/flv-data)
 
 add custom script tag data or metadata at any time of the FLV file
 
@@ -31,4 +31,7 @@ flv-data -i input.flv -data test.json --t=500 -o test.flv
 
 ## other
 [flv.js online test](http://bilibili.github.io/flv.js/demo/)
+
+
+
 [FLV video_file_format_spec for AMF](https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf)

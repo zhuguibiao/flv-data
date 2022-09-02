@@ -1,4 +1,4 @@
-# [flv data](https://github.com/zhuguibiao/flv-data)
+# flv data&middot; [![npm version](https://img.shields.io/npm/v/flv-data)](https://www.npmjs.com/package/flv-data)
 
 在FLV文件的任何时间添加自定义脚本标记数据或元数据
 
@@ -10,7 +10,7 @@
 通过npm下载安装代码
 
 ```bash
- npm install flv-data -g
+npm install flv-data -g
 ```
 
 使用flv-data运行指定文件、需要插入的数据、插入视频到的时间戳和输出目录
@@ -30,4 +30,5 @@ flv-data -i input.flv -data test.json --t=500 -o test.flv
 
 ## 其他
 [flv.js online test](http://bilibili.github.io/flv.js/demo/)
+
 [FLV video_file_format_spec for AMF](https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf)
