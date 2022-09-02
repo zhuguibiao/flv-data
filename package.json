@@ -16,9 +16,6 @@
     "flv-scriptdata",
     "flv-metadata"
   ],
-  "scripts": {
-    "deploy": "gh-pages -d demo"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zhuguibiao/flv-data.git"
@@ -28,8 +25,5 @@
   "dependencies": {
     "minimist": "^1.2.6",
     "ora": "5.4.1"
-  },
-  "devDependencies": {
-    "gh-pages": "^4.0.0"
   }
 }
