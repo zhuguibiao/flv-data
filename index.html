@@ -6,11 +6,13 @@
   <title>flv data js demo</title>
 </head>
 <style>
-  .mainContainer {
+  .mainContainer,
+  .boxCont {
     display: block;
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
   }
 
   .mainContainerLeft {
@@ -23,7 +25,7 @@
     float: left;
     overflow: hidden;
     margin-left: 15px;
-    width:280px
+    width: 280px
   }
 
   .video-container {
@@ -84,7 +86,7 @@
     font-size: 11px;
     font-family: Menlo, Consolas, monospace;
     display: block;
-    width: 100%;
+    width: 98%;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
@@ -204,14 +206,31 @@
         <pre id="result"></pre>
       </div>
     </div>
-  </div>
 
+  </div>
+  <div class="boxCont">
+    <div class="box"></div>
+  </div>
+  <style>
+    .boxCont {
+      position: relative;
+    }
+
+    .box {
+      margin-left: 72px;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      transform: translateX(300px)
+    }
+  </style>
   <script src="./js/flv.js"></script>
 
   <script>
 
     var checkBoxFields = ['isLive', 'withCredentials', 'hasAudio', 'hasVideo'];
     var streamURL, mediaSourceURL;
+    var timer = null
 
     function flv_load() {
       if (mediaSourceURL.className === '') {
@@ -238,9 +257,11 @@
         flv_load_mds(mediaDataSource);
       }
     }
-
     function flv_load_mds(mediaDataSource) {
+      scriptDataList = []
+      clearInterval(timer)
       var element = document.getElementsByName('videoElement')[0];
+      runScript(element)
       if (typeof player !== "undefined") {
         if (player != null) {
           player.unload();
@@ -259,11 +280,65 @@
       player.on(flvjs.Events['SCRIPTDATA_ARRIVED'], getScriptData)
     }
 
+    var scriptDataList = []
+    function runScript(element) {
+      var box = document.querySelector('.box')
+      element.onplay = function (e) {
+        if (
+          scriptDataList &&
+          scriptDataList.length &&
+          scriptDataList[0].customData &&
+          scriptDataList[0].customData.left
+        ) {
+          var index = findTimeStampIndex(element.currentTime * 1000, scriptDataList)
+          console.log(element.currentTime)
+          console.log(scriptDataList[index])
+          timer = setInterval(() => {
+            index++
+            if (index > scriptDataList.length - 1) {
+              return
+            }
+            document.getElementById('result').innerHTML = syntaxHighlight(scriptDataList[index])
+            box.style.transform = 'translateX(' + scriptDataList[index].customData.left + 'px)'
+          }, 1000 / 60);
+        }
+      }
+      element.onpause = function (e) {
+        console.log(element.currentTime)
+        clearInterval(timer)
+      }
+    }
+
     function getScriptData(element) {
-      console.log(element);
+      console.log(element)
       if (element.scriptData) {
         document.getElementById('result').innerHTML = syntaxHighlight(element)
+        scriptDataList.push(element.scriptData)
       }
+    }
+    /**
+     * Binary Search
+     * @param {*} target 
+     * @param {*} list 
+     * @returns index
+     */
+    function findTimeStampIndex(target, list) {
+      const length = list.length;
+      if (!target) return 1
+      if (list[length - 1].timestamp < target) {
+        return length;
+      }
+      let left = 0;
+      let right = length - 1;
+      while (left < right) {
+        let mid = (left + right) >>> 1;
+        if (target > list[mid].timestamp) {
+          left = mid + 1;
+        } else {
+          right = mid;
+        }
+      }
+      return right;
     }
 
     function syntaxHighlight(json) {
@@ -288,8 +363,6 @@
       });
     }
 
-
-
     function flv_start() {
       player.play();
     }
@@ -299,6 +372,8 @@
     }
 
     function flv_destroy() {
+      clearInterval(timer)
+      scriptDataList = []
       player.pause();
       player.unload();
       player.detachMediaElement();
@@ -357,7 +432,6 @@
       var sURL = document.getElementById('sURL');
       ls_set('msURL', msURL.value);
       ls_set('sURL', sURL.value);
-      // console.log('save');
     }
 
     function loadSettings() {
