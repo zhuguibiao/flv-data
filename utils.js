@@ -492,7 +492,7 @@ function encodeflvTagData(customData, timestamp = 0) {
   var targetNameBuf = amf0encString('scriptData')
   var bodyBuf = amf0Encode([scriptData])
   var targetEndBuf = Buffer.alloc(3)
-  targetEndBuf[2] = 9
+  targetEndBuf.writeUInt8(0x09, 2);
   return Buffer.concat([targetNameBuf, bodyBuf, targetEndBuf])
 }
 
