@@ -12,10 +12,13 @@
 通过npm / yarn / pnpm下载安装代码
 
 ```bash
+# 使用 npm
 npm install flv-data -g
-or 
+
+# 使用 yarn
 yarn global add flv-data
-or
+
+# 使用 pnpm
 pnpm install flv-data -g
 ```
 

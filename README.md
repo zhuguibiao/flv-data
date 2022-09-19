@@ -14,10 +14,13 @@ There is an **FLV live stream** in my project, and the result of algorithm analy
 npm / yarn / pnpm
 
 ```bash
+# Using npm
 npm install flv-data -g
-or 
+
+# Using yarn
 yarn global add flv-data
-or
+
+# Using pnpm
 pnpm install flv-data -g
 ```
 
